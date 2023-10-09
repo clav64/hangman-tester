@@ -36,8 +36,26 @@ public partial class GamePage : ContentPage
 	 */
     private void ResetDisplay(string word)
     {
-        
+        // Reset hangman image and update UI for hidden word and remaining attempts.
+
+        for (int i = 0; i < 12; i++)
+        {
+            if (i < word.Length)
+            {
+                char letter = word[i];
+                Label letterLabel = this.FindByName<Label>("Letter" + (i + 1));
+                letterLabel.Text = char.IsWhiteSpace(letter) ? " " : letter.ToString();
+            }
+            else
+            {
+                Label letterLabel = this.FindByName<Label>("Letter" + (i + 1));
+                letterLabel.Text = " ";
+            }
+        }
+
+        RemainingAttemptsLabel.Text = $"Remaining Attempts: {remainingAttempts}";
     }
+
 
     /*!
 	 * Uses the GameType to select a word from the list by its length:
