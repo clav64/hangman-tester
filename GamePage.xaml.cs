@@ -99,8 +99,8 @@ public partial class GamePage : ContentPage
         // stub to show the program is using the correct letter against the word returned in SelectWord function
         if (remainingAttempts > 0 && isCorrect)
 		{
-			await DisplayAlert("Good", letter.ToString() + " is in word", "OK");
-        }
+			await DisplayAlert("Good", letter.ToString() + " is in word", "OK");			
+		}
 
 		else
 		{
