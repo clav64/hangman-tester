@@ -15,18 +15,18 @@ public partial class GamePage : ContentPage
 
 	int remainingAttempts = 7;
 
-    private List<string> wordList;
+   // private List<string> wordList;
 
     public GamePage(string gameType)
     {
-        LoadWordList();
+        //LoadWordList();
         InitializeComponent();
         GameType = gameType;
         BindingContext = this;
         CreateNewChallenge();
     }
 
-
+/*!
     private void LoadWordList()
     {
         wordList = new List<string>();
@@ -52,7 +52,7 @@ public partial class GamePage : ContentPage
             }
         }
     }
-
+//
     /* Requires testing */
     private void CreateNewChallenge()
 	{
