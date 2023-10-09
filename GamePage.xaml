@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hangman.GamePage"
+             >
+    <ContentView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="50"
+            >
+            <Label
+                Text = "{Binding GameType}" 
+                    FontSize="32"
+                    HorizontalOptions="Center"
+                />
+
+            <Image Source="hangman.png" Aspect="Center"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="Letter1" Grid.Column="0" Text = "{Binding Word[0]}" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Letter2" Grid.Column="1" Text = "{Binding Word[1]}" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Letter3" Grid.Column="2" Text = "{Binding Word[2]}" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Letter4" Grid.Column="3" Text = "{Binding Word[3]}" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Letter5" Grid.Column="4" Text = "{Binding Word[4]}" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Letter6" Grid.Column="5" Text = "{Binding Word[5]}" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Letter7" Grid.Column="6" Text = "{Binding Word[6]}" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Letter8" Grid.Column="7" Text = "{Binding Word[7]}" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Letter9" Grid.Column="8" Text = "{Binding Word[8]}" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Letter10" Grid.Column="9" Text = "{Binding Word[9]}" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Letter11" Grid.Column="10" Text = "{Binding Word[10]}" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Letter12" Grid.Column="11" Text = "{Binding Word[11]}" FontSize="24" HorizontalOptions="Center" />
+
+                <Label x:Name="Underline1" Grid.Column="0" Grid.Row="1" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Underline2" Grid.Column="1" Grid.Row="1" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Underline3" Grid.Column="2" Grid.Row="1" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Underline4" Grid.Column="3" Grid.Row="1" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Underline5" Grid.Column="4" Grid.Row="1" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Underline6" Grid.Column="5" Grid.Row="1" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Underline7" Grid.Column="6" Grid.Row="1" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Underline8" Grid.Column="7" Grid.Row="1" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Underline9" Grid.Column="8" Grid.Row="1" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Underline10" Grid.Column="9" Grid.Row="1" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Underline11" Grid.Column="10" Grid.Row="1" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="Underline12" Grid.Column="11" Grid.Row="1" FontSize="24" HorizontalOptions="Center" />
+
+
+                <Entry 
+                    x:Name="AnswerEntry"
+                    FontSize="32"
+                    HorizontalOptions="Center"
+                    Grid.Row="2"
+                    Grid.Column="6"
+                    />
+                <Button 
+                    Grid.Row="2" 
+                    Grid.Column="7"
+                    BackgroundColor="Green"  
+                    Text="Go"
+                    Clicked="OnAttemptSubmitted"
+                    />
+            </Grid>
+
+        </VerticalStackLayout>
+    </ContentView>
+</ContentPage>
