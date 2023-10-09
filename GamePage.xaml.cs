@@ -1,6 +1,9 @@
 using Hangman.Models;
 using Windows.Data.Text;
 using Windows.Media.AppBroadcasting;
+using System.Linq;
+using Windows.UI.Notifications;
+using Windows.ApplicationModel.Chat;
 
 namespace Hangman;
 
@@ -10,7 +13,7 @@ public partial class GamePage : ContentPage
 	List<char> LettersTried { get; set; }
 	char CurrentLetterGuess { get; set; }
 	public string Word {  get; set; }
-
+		
 	int remainingAttempts = 7;
 
 	public GamePage(string gameType)
@@ -77,7 +80,12 @@ public partial class GamePage : ContentPage
 	 */
     private bool CheckLetterInWord(string word, char answer)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        if (word.ToLower().Contains(answer)) 
+		{
+            return true;
+        }
+		return false;		
     }
 
 
@@ -87,7 +95,18 @@ public partial class GamePage : ContentPage
 	 */
     private void UpdateDisplay(bool isCorrect, string word, char letter, int remainingAttempts)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+
+		if (remainingAttempts > 0 && isCorrect)
+		{
+            Console.WriteLine("Function called");
+        }
+
+		else
+		{
+			Console.WriteLine("No remaining attempts");
+
+        }
     }
 
 
