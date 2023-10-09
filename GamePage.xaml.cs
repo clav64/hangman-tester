@@ -1,11 +1,13 @@
+using System.Diagnostics;
+using System.IO;
 using Hangman.Models;
 using Windows.Data.Text;
 using Windows.Media.AppBroadcasting;
-
 namespace Hangman;
 
 public partial class GamePage : ContentPage
 {
+
 	public string GameType { get; set; }
 	List<char> LettersTried { get; set; }
 	char CurrentLetterGuess { get; set; }
@@ -13,18 +15,46 @@ public partial class GamePage : ContentPage
 
 	int remainingAttempts = 7;
 
-	public GamePage(string gameType)
-	{
-		InitializeComponent();
+    private List<string> wordList;
 
+    public GamePage(string gameType)
+    {
+        LoadWordList();
+        InitializeComponent();
         GameType = gameType;
-		BindingContext = this;
+        BindingContext = this;
+        CreateNewChallenge();
+    }
 
-		CreateNewChallenge();
-	}
 
-	/* Requires testing */
-	private void CreateNewChallenge()
+    private void LoadWordList()
+    {
+        wordList = new List<string>();
+
+        var resourceName = "C:/Users/rober/Source/Repos/hangman-tester/Resources/Raw/wordList.txt";
+        var assembly = typeof(GamePage).Assembly;
+
+
+        Debug.WriteLine("Available Resources:");
+        foreach (var res in assembly.GetManifestResourceNames())
+        {
+            Debug.WriteLine(res);
+        }
+
+
+        using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+        using (StreamReader reader = new StreamReader(stream))
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                wordList.Add(line);
+            }
+        }
+    }
+
+    /* Requires testing */
+    private void CreateNewChallenge()
 	{
 		Word = SelectWord(GameType);
 		ResetDisplay(Word);
@@ -47,7 +77,17 @@ public partial class GamePage : ContentPage
 	 */
     private string SelectWord(string gameType)
     {
-		return "placeholder";
+        switch (gameType)
+        {
+            case "Easy":
+                return wordList.Find(word => word.Length < 7);
+            case "Medium":
+                return wordList.Find(word => word.Length >= 7 && word.Length < 10);
+            case "Hard":
+                return wordList.Find(word => word.Length >= 10);
+            default:
+                return "placeholder";
+        }
     }
 
 	/* Requires testing */
