@@ -15,7 +15,7 @@
                 />
 
             <Image Source="hangman.png" Aspect="Center"/>
-
+            <Label x:Name="RemainingAttemptsLabel" FontSize="16" Grid.Row="3" Grid.Column="6" HorizontalOptions="Center" />
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -79,6 +79,7 @@
                     Text="Go"
                     Clicked="OnAttemptSubmitted"
                     />
+                
             </Grid>
 
         </VerticalStackLayout>
