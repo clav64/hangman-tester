@@ -79,9 +79,13 @@ public partial class GamePage : ContentPage
         var isCorrect = false;
 
 		isCorrect = CheckLetterInWord(Word, answer);
-		UpdateDisplay(isCorrect, Word, answer, remainingAttempts);
 
-        remainingAttempts--;
+        if (isCorrect == false)
+        {
+            remainingAttempts--;
+        }
+        UpdateDisplay(isCorrect, Word, answer, remainingAttempts);
+		
 		AnswerEntry.Text = "";
 		AnswerEntry.Focus();
 
@@ -124,6 +128,7 @@ public partial class GamePage : ContentPage
 
 		else
 		{
+			RemainingAttemptsLabel.Text = $"Remaining Attempts: {remainingAttempts}";
             await DisplayAlert("No", letter.ToString() + " is not in the word", "OK");
         }
     }
@@ -135,8 +140,8 @@ public partial class GamePage : ContentPage
 	 */
     private void GameOver(string word)
 	{
-        DisplayAlert("Sorry", "The correct answer was " + word, "OK");
-		// add function to reset?
+        //DisplayAlert("Sorry", "The correct answer was " + word, "OK");
+        CreateNewChallenge();
     }
 
     private void OnBackToMenu(object sender, EventArgs e)
