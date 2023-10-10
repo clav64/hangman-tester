@@ -1,6 +1,10 @@
 using Hangman.Models;
 using Windows.Data.Text;
 using Windows.Media.AppBroadcasting;
+using System.Linq;
+using Windows.UI.Notifications;
+using Windows.ApplicationModel.Chat;
+using Windows.Media.Capture;
 
 namespace Hangman;
 
@@ -11,7 +15,7 @@ public partial class GamePage : ContentPage
 	char CurrentLetterGuess { get; set; }
 	public string Word {  get; set; }
 
-	int remainingAttempts = 7;
+    int remainingAttempts = 7;
 
 	public GamePage(string gameType)
 	{
@@ -36,8 +40,26 @@ public partial class GamePage : ContentPage
 	 */
     private void ResetDisplay(string word)
     {
-        
+        // Reset hangman image and update UI for hidden word and remaining attempts.
+
+        for (int i = 0; i < 12; i++)
+        {
+            if (i < word.Length)
+            {
+                char letter = word[i];
+                Label letterLabel = this.FindByName<Label>("Letter" + (i + 1));
+                letterLabel.Text = char.IsWhiteSpace(letter) ? " " : letter.ToString();
+            }
+            else
+            {
+                Label letterLabel = this.FindByName<Label>("Letter" + (i + 1));
+                letterLabel.Text = " ";
+            }
+        }
+
+        RemainingAttemptsLabel.Text = $"Remaining Attempts: {remainingAttempts}";
     }
+
 
     /*!
 	 * Uses the GameType to select a word from the list by its length:
@@ -65,7 +87,7 @@ public partial class GamePage : ContentPage
 
         if (remainingAttempts == 0)
 		{
-			GameOver();
+			GameOver(Word);
 		}
     }
 
@@ -77,7 +99,11 @@ public partial class GamePage : ContentPage
 	 */
     private bool CheckLetterInWord(string word, char answer)
     {
-        throw new NotImplementedException();
+        if (word.ToLower().Contains(answer)) 
+		{
+            return true;
+        }
+		return false;		
     }
 
 
@@ -85,9 +111,21 @@ public partial class GamePage : ContentPage
 	 * Changes the image shown on the page and
 	 * Updates the visibility of the labels representing the letters in the word
 	 */
-    private void UpdateDisplay(bool isCorrect, string word, char letter, int remainingAttempts)
+    private async void UpdateDisplay(bool isCorrect, string word, char letter, int remainingAttempts)
     {
-        throw new NotImplementedException();
+
+        // stub to show the program is using the correct letter against the word returned in SelectWord function
+        if (remainingAttempts > 0 && isCorrect)
+		{
+			await DisplayAlert("Good", letter.ToString() + " is in word", "OK");	
+			
+			/// this needs to update the display
+		}
+
+		else
+		{
+            await DisplayAlert("No", letter.ToString() + " is not in the word", "OK");
+        }
     }
 
 
@@ -95,9 +133,10 @@ public partial class GamePage : ContentPage
 	 * Resets all game variables and displays the final result
 	 * Also displays the options to return to the menu, exit or play again
 	 */
-    private void GameOver()
+    private void GameOver(string word)
 	{
-        throw new NotImplementedException();
+        DisplayAlert("Sorry", "The correct answer was " + word, "OK");
+		// add function to reset?
     }
 
     private void OnBackToMenu(object sender, EventArgs e)

@@ -79,6 +79,7 @@
                     Text="Go"
                     Clicked="OnAttemptSubmitted"
                     />
+                <Label x:Name="RemainingAttemptsLabel" FontSize="16" Grid.Row="3" Grid.Column="6" HorizontalOptions="Center" />
             </Grid>
 
         </VerticalStackLayout>
