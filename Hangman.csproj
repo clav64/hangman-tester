@@ -39,6 +39,7 @@
 		<None Remove="Resources\Raw\wordList.txt" />
 		<MauiAsset Include="Resources\Raw\wordList.txt" />
 
+
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAssets Include="Resources\Raw\wordList.txt">
 			<LogicalName>Resources/Raw/wordList.txt</LogicalName>
