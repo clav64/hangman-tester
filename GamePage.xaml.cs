@@ -15,14 +15,13 @@ public partial class GamePage : ContentPage
 
 	int remainingAttempts = 7;
 
-   // private List<string> wordList;
-
     public GamePage(string gameType)
     {
-        //LoadWordList();
         InitializeComponent();
+
         GameType = gameType;
         BindingContext = this;
+
         CreateNewChallenge();
     }
 
@@ -109,12 +108,7 @@ public partial class GamePage : ContentPage
 		}
     }
 
-    /*!
-	 * Uses the GameType to select a word from the list by its length:
-	 * Easy : length < 7
-	 * Medium : 7 <= length < 10
-	 * Hard : length >= 10
-	 */
+
     private bool CheckLetterInWord(string word, char answer)
     {
         throw new NotImplementedException();

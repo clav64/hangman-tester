@@ -36,9 +36,13 @@
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
+		<None Remove="Resources\Raw\wordList.txt" />
+		<MauiAsset Include="Resources\Raw\wordList.txt" />
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+		<MauiAssets Include="Resources\Raw\wordList.txt">
+			<LogicalName>Resources/Raw/wordList.txt</LogicalName>
+		</MauiAssets>
 	</ItemGroup>
 
 	<ItemGroup>
