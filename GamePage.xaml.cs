@@ -1,11 +1,4 @@
 using Hangman.Models;
-using System.ComponentModel.Design;
-using Windows.Data.Text;
-using Windows.Media.AppBroadcasting;
-using System.Linq;
-using Windows.UI.Notifications;
-using Windows.ApplicationModel.Chat;
-using Windows.Media.Capture;
 
 namespace Hangman;
 
@@ -70,7 +63,7 @@ public partial class GamePage : ContentPage
 	 * Based on the users selected difficulty, find a word suitable
 	 * and return it
 	 */
-    private string SelectWord(string gameType)
+    public string SelectWord(string gameType)
     {
         Random random = new Random();
 
@@ -127,7 +120,7 @@ public partial class GamePage : ContentPage
 	 * Medium : 7 <= length < 10
 	 * Hard : length >= 10
 	 */
-    private bool CheckLetterInWord(string word, char answer)
+    public bool CheckLetterInWord(string word, char answer)
     {
         if (word.ToLower().Contains(answer)) 
 		{
